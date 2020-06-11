@@ -47,8 +47,17 @@ class LoginApi(Resource):
             access_token = create_access_token(
                 identity=str(user.id), expires_delta=expires
             )
+            user_response = {
+                "token": str(access_token),
+                "user": {
+                    "id": str(user.id),
+                    "email": user.email,
+                    "first_name": user.first_name,
+                    "last_name": user.last_name
+                }
+            }
             return Response(
-                json.dumps({"token": str(access_token)}),
+                json.dumps(user_response),
                 mimetype="application/json",
                 status=200,
             )

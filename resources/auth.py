@@ -20,7 +20,7 @@ class RegisterApi(Resource):
             user.hash_password()
             user.save()
             return Response(
-                json.dumps({id: str(user.id)}), mimetype="application/json", status=200
+                json.dumps({"id": str(user.id)}), mimetype="application/json", status=200
             )
         except FieldDoesNotExist:
             raise SchemaValidationError

@@ -3,11 +3,10 @@ from flask_bcrypt import generate_password_hash, check_password_hash
 
 
 class Event(db.Document):
-    name = db.StringField(required=True)
+    title = db.StringField(required=True)
     description = db.StringField()
     start = db.DateTimeField(required=True)
     end = db.DateTimeField(required=True)
-    tags = db.ListField(db.StringField(max_length=30))
     owner = db.ReferenceField("User")
 
 
